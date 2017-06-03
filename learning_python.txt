@@ -1,0 +1,4 @@
+In Python you can print
+In Python you can write functions
+In Python you can for loops
+In Python you can while loops
