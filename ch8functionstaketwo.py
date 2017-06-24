@@ -1,5 +1,5 @@
 #Python Crash Course Chapter 8 Functions
-#function with dictionary, function with while loop, function with lists are included
+#function with dictionary, function with while loop, function with for loop, function with lists, modules are included
 
 def greetuser(passvaluename):
 	print("Hello, " +passvaluename)
@@ -120,17 +120,38 @@ printmodelscopylist(unprinteddesigns[:],completedmodels) #return Printing model:
 print(unprinteddesigns) #print ["iphone case","robot pendant","dodecahedron"]
 print(completedmodels) #print ['dodecahedron', 'robot pendant', 'iphone case']
 
-def showmagicians(name):
-	print(name)
+def showmagicians(name):	
+	for eachname in name:
+		print(eachname)
 def makegreat(name):	
 	for eachname in name:		
 		great = "the Great " +eachname
-		magiciannames.remove(eachname)
-		print(great)
-		magiciannames.append(great)
+		greatmagiciannames.append(great)
 magiciannames = ["Houdini","Jerry","Secret"]
+greatmagiciannames = []
 showmagicians(magiciannames)
 makegreat(magiciannames)
-showmagicians(magiciannames) #error prints ['Jerry', 'the Great Houdini', 'the Great the Great Secret']
+showmagicians(greatmagiciannames)
+print("\n")
 
-#Begin page 151
+def makepizza(size, *toppings): #arbitrary number arguments placed last
+	print("Making a " +size+ " pizza with the following toppings:")
+	for eachtopping in toppings:
+		print("- " +eachtopping) #side note, if no for loop, makepizza() prints results in a tuple
+makepizza("small","pepperoni") #return Making a "small" pizza with the following toppings:\n - pepperoni
+makepizza("medium","mushrooms","green peppers","extra cheese") #return Making a "medium" pizza with the following toppings:\n - mushrooms\n - green peppers\n - extra cheese
+makepizza("large","salami","sausage","pepperoni","bell peppers") #return Making a large pizza with the following toppings:\n- salami\n - sausage\n - pepperoni\n - bell peppers
+#functions that accept as many key-value pairs as the calling statement provides
+#double asterisks before the parameter **userinfo cause Python to create an empty dictionary called user_info and pack whatever name-value pairs it receives into this dictionary.  Function works no matter how many additional key-value pairs are provided in the function call.
+def buildprofile(first, last, **userinfo):
+	profile = {}
+	profile["firstname"] = first
+	profile["lastname"] = last
+	for key, value in userinfo.items():
+		profile[key] = value
+	return profile
+print(buildprofile("albert","einstein",location="princeton",field="physics")) #print {'location': 'princeton', 'field': 'physics', 'lastname': 'einstein', 'firstname': 'albert'}
+print(buildprofile("Jackie","Chan",hobbies="books, karate, chow mein",favorite_color="red",car="audi")) #print {'lastname': 'Chan', 'firstname': 'Jackie', 'hobbies': 'books, karate, chow mein', 'car': 'audi', 'favorite_color': 'red'}
+
+#storing your functions in a separate file called a module and then importing that module into your main program. An import statement tells Python to make the code in a module available in the currently running program file.
+
