@@ -124,4 +124,70 @@ hist.y_title = "Frequency of Result"
 hist.add("D6", frequencies)
 #hist.show() #error message
 hist.render_to_file("filename.svg")
-#start page 353 rolling two dice
+#roll two six-sided dice
+die1 = Die()
+die2 = Die()
+results2 = []
+for rollnum in range(0,100):
+	result = die1.roll() + die2.roll()
+	results2.append(result)
+frequencies2 = []
+maxdicesum = die1.numsides + die2.numsides
+for value in range(2,maxdicesum+1):
+	frequency = results2.count(value)
+	frequencies2.append(frequency)
+print(frequencies2)
+hist = pygal.Bar() #creating an instance of pygal.Bar(), which we store in hist
+hist.Title = "Results of rolling one D6 100 times."
+hist.x_labels = ["2","3","4","5","6","7","8","9","10","11","12"]
+hist.x_title = "Result"
+hist.y_title = "Frequency of Result"
+hist.add("2D6", frequencies2)
+#hist.show() #error message
+hist.render_to_file("filename2.svg")
+#roll two different sided dice
+die3 = Die()
+die4 = Die(10)
+results3 = []
+for rollnum in range(0,100):
+	result = die3.roll() + die4.roll()
+	results3.append(result)
+frequencies3 = []
+maxdicesum = die3.numsides + die4.numsides
+for value in range(2,maxdicesum+1):
+	frequency = results3.count(value)
+	frequencies3.append(frequency)
+print(frequencies3)
+hist = pygal.Bar() #creating an instance of pygal.Bar(), which we store in hist
+hist.Title = "Results of rolling one D6 100 times."
+hist.x_labels = ["2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"]
+hist.x_title = "Result"
+hist.y_title = "Frequency of Result"
+hist.add("1D6+1D10", frequencies3)
+#hist.show() #error message
+hist.render_to_file("filename3.svg")
+
+#roll two different sided dice x_labels created for loop
+die5 = Die()
+die6 = Die(10)
+results4 = []
+for rollnum in range(0,100):
+	result = die5.roll() + die6.roll()
+	results4.append(result)
+frequencies4 = []
+maxdicesum = die5.numsides + die6.numsides
+for value in range(2,maxdicesum+1):
+	frequency = results4.count(value)
+	frequencies4.append(frequency)
+print(frequencies4)
+hist = pygal.Bar() #creating an instance of pygal.Bar(), which we store in hist
+hist.Title = "Results of rolling one D6 100 times."
+xlabels = []
+for eachnumber in range (2,maxdicesum+1):
+	xlabels.append(str(eachnumber))
+hist.x_labels = xlabels
+hist.x_title = "Result xlabels"
+hist.y_title = "Frequency of Result"
+hist.add("1D6+1D10", frequencies4)
+#hist.show() #error message
+hist.render_to_file("filename4.svg")
